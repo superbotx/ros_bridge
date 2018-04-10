@@ -8,7 +8,6 @@ from threading import Thread
 import rospy
 from flask import Flask, request
 from flask_socketio import SocketIO, send, emit
-from werkzeug.serving import run_simple
 
 streaming_app = Flask(__name__)
 socketio = SocketIO(streaming_app)
