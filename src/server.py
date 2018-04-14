@@ -20,7 +20,7 @@ ros_publishers = {}
 @socketio.on('forward_ros_msg')
 def handle_my_custom_event(topic_name, message_type, payload, count=1, rate=1):
     global ros_publishers
-    print('received reply: ' + topic_name + ' ' + message_type + ' ' + str(payload))
+    print('received forward: ' + topic_name + ' ' + message_type + ' ' + str(payload))
     if topic_name not in ros_publishers:
         msg_module = util.get_ros_message_package(message_type)
         pub = rospy.Publisher(topic_name, msg_module, queue_size=10)
