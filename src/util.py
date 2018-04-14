@@ -38,6 +38,14 @@ def get_ros_topics():
             ros_topics.append(ros_topic_item)
     return ros_topics
 
+def get_ros_message_package(message_type):
+    fields = str(message_type).strip().split('/')
+    package_name = fields[0] + '.msg'
+    module_name = fields[1]
+    msg_package = __import__(package_name, globals(), locals(), [module_name], -1)
+    msg_module = getattr(msg_package, module_name)
+    return msg_module
+
 def get_ros_topic_type(topic_name):
     ros_topic_type_raw = subprocess.check_output(['rostopic', 'type', '/'+topic_name])
     fields = ros_topic_type_raw.strip().split('/')
