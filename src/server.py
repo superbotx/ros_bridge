@@ -38,7 +38,7 @@ class ros_callback():
     def watch(self, data):
         payload = util.convert_ros_message_to_dictionary(data)
         namespace = '/' + self.topic_name
-        socketio.emit('ros_message', ("payload", payload), broadcast=True, namespace=namespace)
+        socketio.emit('ros_message', payload, broadcast=True, namespace=namespace)
 
 def launch_subscriber(topic_name, msg, watcher):
     rospy.Subscriber(topic_name, msg, watcher.watch)
